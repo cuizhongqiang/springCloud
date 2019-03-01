@@ -1,0 +1,16 @@
+server:
+  port: 8888
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaltZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: service-config
+  cloud:
+    config:
+      uri: 
