@@ -4,9 +4,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>demo-eureka-client</artifactId>
+    <artifactId>demo-eureka-clientb</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo-eureka-client</name>
+    <name>demo-eureka-clientb</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

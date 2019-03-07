@@ -1,4 +1,4 @@
-package com.example.demo.eureka.client;
+package com.example.demo.eureka.clientb;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableEurekaClient
 @RefreshScope
 @RestController
-public class DemoEurekaClientApplication {
+public class DemoEurekaClientbApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoEurekaClientApplication.class, args);
+        SpringApplication.run(DemoEurekaClientbApplication.class, args);
     }
 
     @Value("${server.port}")
@@ -32,7 +32,7 @@ public class DemoEurekaClientApplication {
 
     @RequestMapping("/hello")
     public String hello() {
-        return hello + "--8762";
+        return hello + "--8763";
     }
 
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8762
+  port: 8888
 
 eureka:
   client:
@@ -10,15 +10,13 @@ eureka:
 
 spring:
   application:
-    name: service-client
+    name: config-server
   cloud:
     config:
-      name: service-config #对应{application}部分
-      profile: dev #对应{profile}部分
-      label: master #对应git的分支。如果配置中心使用的是本地存储，则该参数无用
-      discovery:
-        enabled: true #开启Config服务发现支持
-        service-id: config-server #指定配置中心的service-id，便于扩展为高可用配置集群。
+      server:
+        git:
+          uri: https://github.com/cuizhongqiang/springCloud
+          search-paths: config
   rabbitmq:
     host: localhost # 登录 Rabbitmq 后台管理页面地址为：http://localhost:15672
     port: 5672
@@ -32,6 +30,6 @@ management:
         include: '*'
   endpoint:
     bus-refresh:
-      enabled: true
+      enabled: true # /actuator/bus-refresh
     refresh:
-      enabled: true
+      enabled: true # /actuator/refresh
