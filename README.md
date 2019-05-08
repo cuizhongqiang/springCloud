@@ -4,7 +4,7 @@
      spring boot : 2.1.3.RELEASE
 + domo-eureka-server 服务注册中心
 + domo-eureka-config-server 配置服务（RabbitMQ整合 -- spring cloud netflix bus消息总栈）
-+ demo-eureka-client,demo-eureka-client 集群客户端服务，服务消费（依赖配置服务）
++ demo-eureka-client,demo-eureka-clientb 集群客户端服务，服务消费（依赖配置服务）
 + demo-eureka-ribbon-server 客户端的负载均衡
 + demo-eureka-feign-server 调用远端服务的REST接口
 + demo-eureka-turbine 断路器Hystrix Dashboard监控，Turbine多流监控
