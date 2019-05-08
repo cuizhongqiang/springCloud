@@ -10,7 +10,7 @@ eureka:
 
 spring:
   application:
-    name: service-client
+    name: service-clientb
   cloud:
     config:
       name: service-config #对应{application}部分

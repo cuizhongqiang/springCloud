@@ -1,0 +1,54 @@
+server:
+  port: 5001
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaltZone: http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      name: service-config # 对应{application}部分
+      profile: dev # 对应{profile}部分
+      label: master # 对应git的分支。如果配置中心使用的是本地存储，则该参数无用
+      discovery:
+        enabled: true # 开启Config服务发现支持
+        service-id: config-server # 指定配置中心的service-id，便于扩展为高可用配置集群。
+    gateway:
+      routes:
+      - id: client # 路由的id，不要重复，如不配置，会生成一个uuid代替
+        uri: lb://service-client # 路由的目标地址。注意：uri地址后面不要加"/",lb代表从注册中心获取服务
+        # Path: /client/** # 配置路由的路径。比如：/web/{segment}则表示当访问http://127.0.0.1:8562/web/**时候路由的指定的uri上面
+        predicates: # 谓词,Cookie/Header等
+          - Path=/client/**
+        filters:
+          - StripPrefix=1 # 表示在转发时去掉client
+
+      - id: clientb
+        uri: lb://service-clientb
+        predicates:
+          - Path=/clientb/**
+        filters:
+          - StripPrefix=1
+
+  rabbitmq:
+    host: localhost # 登录 Rabbitmq 后台管理页面地址为：http://localhost:15672
+    port: 5672
+    username: springcloud
+    password: 123456
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    bus-refresh:
+      enabled: true #  /actuator/bus-refresh
+    refresh:
+      enabled: true #  /actuator/refresh
