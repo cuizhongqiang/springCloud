@@ -13,31 +13,31 @@ spring:
     name: gateway
   cloud:
     config:
-      name: service-config # ¶ÔÓ¦{application}²¿·Ö
-      profile: dev # ¶ÔÓ¦{profile}²¿·Ö
-      label: master # ¶ÔÓ¦gitµÄ·ÖÖ§¡£Èç¹ûÅäÖÃÖĞĞÄÊ¹ÓÃµÄÊÇ±¾µØ´æ´¢£¬Ôò¸Ã²ÎÊıÎŞÓÃ
+      name: service-config # å¯¹åº”{application}éƒ¨åˆ†
+      profile: dev # å¯¹åº”{profile}éƒ¨åˆ†
+      label: master # å¯¹åº”gitçš„åˆ†æ”¯ã€‚å¦‚æœé…ç½®ä¸­å¿ƒä½¿ç”¨çš„æ˜¯æœ¬åœ°å­˜å‚¨ï¼Œåˆ™è¯¥å‚æ•°æ— ç”¨
       discovery:
-        enabled: true # ¿ªÆôConfig·şÎñ·¢ÏÖÖ§³Ö
-        service-id: config-server # Ö¸¶¨ÅäÖÃÖĞĞÄµÄservice-id£¬±ãÓÚÀ©Õ¹Îª¸ß¿ÉÓÃÅäÖÃ¼¯Èº¡£
+        enabled: true # å¼€å¯ConfigæœåŠ¡å‘ç°æ”¯æŒ
+        service-id: config-server # æŒ‡å®šé…ç½®ä¸­å¿ƒçš„service-idï¼Œä¾¿äºæ‰©å±•ä¸ºé«˜å¯ç”¨é…ç½®é›†ç¾¤ã€‚
     gateway:
       routes:
-      - id: client # Â·ÓÉµÄid£¬²»ÒªÖØ¸´£¬Èç²»ÅäÖÃ£¬»áÉú³ÉÒ»¸öuuid´úÌæ
-        uri: lb://service-client # Â·ÓÉµÄÄ¿±êµØÖ·¡£×¢Òâ£ºuriµØÖ·ºóÃæ²»Òª¼Ó"/",lb´ú±í´Ó×¢²áÖĞĞÄ»ñÈ¡·şÎñ
-        # Path: /client/** # ÅäÖÃÂ·ÓÉµÄÂ·¾¶¡£±ÈÈç£º/web/{segment}Ôò±íÊ¾µ±·ÃÎÊhttp://127.0.0.1:8562/web/**Ê±ºòÂ·ÓÉµÄÖ¸¶¨µÄuriÉÏÃæ
-        predicates: # Î½´Ê,Cookie/HeaderµÈ
-          - Path=/client/**
+      - id: client # è·¯ç”±çš„idï¼Œä¸è¦é‡å¤ï¼Œå¦‚ä¸é…ç½®ï¼Œä¼šç”Ÿæˆä¸€ä¸ªuuidä»£æ›¿
+        uri: lb://service-client # è·¯ç”±çš„ç›®æ ‡åœ°å€ã€‚æ³¨æ„ï¼šuriåœ°å€åé¢ä¸è¦åŠ "/",lbä»£è¡¨ä»æ³¨å†Œä¸­å¿ƒè·å–æœåŠ¡
+        # Path: /client/** # é…ç½®è·¯ç”±çš„è·¯å¾„ã€‚æ¯”å¦‚ï¼š/web/{segment}åˆ™è¡¨ç¤ºå½“è®¿é—®http://127.0.0.1:8562/web/**æ—¶å€™è·¯ç”±çš„æŒ‡å®šçš„uriä¸Šé¢
+        predicates: # è°“è¯,Cookie/Headerç­‰
+        - Path=/client/**
         filters:
-          - StripPrefix=1 # ±íÊ¾ÔÚ×ª·¢Ê±È¥µôclient
+        - StripPrefix=1 # è¡¨ç¤ºåœ¨è½¬å‘æ—¶å»æ‰client
 
       - id: clientb
         uri: lb://service-clientb
         predicates:
-          - Path=/clientb/**
+        - Path=/clientb/**
         filters:
-          - StripPrefix=1
+        - StripPrefix=1
 
   rabbitmq:
-    host: localhost # µÇÂ¼ Rabbitmq ºóÌ¨¹ÜÀíÒ³ÃæµØÖ·Îª£ºhttp://localhost:15672
+    host: localhost # ç™»å½• Rabbitmq åå°ç®¡ç†é¡µé¢åœ°å€ä¸ºï¼šhttp://localhost:15672
     port: 5672
     username: springcloud
     password: 123456
